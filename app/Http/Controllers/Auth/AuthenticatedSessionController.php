@@ -27,8 +27,13 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        if ($request->user()->role == 'student') {
+            return redirect()->intended(route('student.dashboard', absolute: false));
+        } else {
+            return redirect()->intended(route('instructor.dashboard', absolute: false));
+        }
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return abort(404);
     }
 
     /**
@@ -41,7 +46,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
- 
+
         return redirect('/');
     }
 }
