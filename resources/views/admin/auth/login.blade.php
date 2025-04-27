@@ -35,7 +35,7 @@
                                     </div>
 
                                     <div class="form-footer">
-                                        <x-primary-button class="btn btn-primary w-100">
+                                        <x-primary-button>
                                             {{ __('Log in') }}
                                         </x-primary-button>
                                     </div>

@@ -6,7 +6,6 @@
             <div class="d-flex">
                 <span>{{ $message }}</span>
             </div>
-            </div>
         @endforeach
     </ul>
 @endif
