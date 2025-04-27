@@ -1,14 +1,16 @@
 <?php
 
+use App\Http\Controllers\Enduser\EnduserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Enduser\StudentDashboardController;
 use App\Http\Controllers\Enduser\InstructorDashboardController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+Route::get('/', [EnduserController::class, 'index']);
 
 Route::group(['middleware' => ['auth', 'verified', 'check_role:student'], 'prefix' => 'student', 'as' => 'student.'], function () {
     Route::get('dashboard', [StudentDashboardController::class, 'index'])->name("dashboard");

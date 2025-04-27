@@ -11,6 +11,6 @@ class StudentDashboardController extends Controller
     //
     public function index(): View
     {
-        return view("students.dashboard");
+        return view("enduser.students.dashboard");
     }
 }

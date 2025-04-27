@@ -9,8 +9,8 @@ use App\Http\Controllers\Controller;
 class InstructorDashboardController extends Controller
 {
     //
-    public function index():View
+    public function index(): View
     {
-        return view("instructors.dashboard");
+        return view("enduser.instructors.dashboard");
     }
 }
