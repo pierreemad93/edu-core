@@ -23,6 +23,8 @@
             font-feature-settings: "cv03", "cv04", "cv11";
         }
     </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    @vite(['resources/js/admin/admin.js'])
 </head>
 
 <body>
