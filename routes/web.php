@@ -11,7 +11,7 @@ use App\Http\Controllers\Enduser\InstructorDashboardController;
 //     return view('welcome');
 // });
 
-Route::get('/', [EnduserController::class, 'index']);
+Route::get('/', [EnduserController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth', 'verified', 'check_role:student'], 'prefix' => 'student', 'as' => 'student.'], function () {
     Route::get('dashboard', [StudentDashboardController::class, 'index'])->name("dashboard");

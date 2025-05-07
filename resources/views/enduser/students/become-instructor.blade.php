@@ -1,5 +1,5 @@
 <x-end-user-layout>
-    <x-slot name="content">
+    <x-slot:content>
         <!--===========================
         BREADCRUMB START
     ============================-->
