@@ -14,13 +14,17 @@ use App\Http\Controllers\Enduser\InstructorDashboardController;
 Route::get('/', [EnduserController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth', 'verified', 'check_role:student'], 'prefix' => 'student', 'as' => 'student.'], function () {
-    Route::get('dashboard', [StudentDashboardController::class, 'index'])->name("dashboard");
-    Route::get('become-instructor', [StudentDashboardController::class, 'becomeInstructor'])->name('become-instructor');
-    Route::post('become-instructor/{user}', [StudentDashboardController::class, 'becomeInstructorDoc'])->name('become-instructor.doc');
+
+    Route::controller(StudentDashboardController::class)->group(function () {
+        Route::get('dashboard', 'index')->name("dashboard");
+        Route::get('become-instructor',  'becomeInstructor')->name('become-instructor');
+        Route::post('become-instructor/{user}', 'becomeInstructorDoc')->name('become-instructor.doc');
+    });
 });
 
 
-Route::group(['middleware' => ['auth', 'verified', 'check_role:instructor'], 'prefix' => 'instructor', 'as' => 'instructor.'], function () {
+
+Route::group([' middleware' => ['auth', 'verified', 'check_role:instructor'], 'prefix' => 'instructor', 'as' => 'instructor.'], function () {
     Route::get('dashboard', [InstructorDashboardController::class, 'index'])->name("dashboard");
 });
 
@@ -34,8 +38,15 @@ Route::group(['middleware' => ['auth:admin', 'verified'], 'prefix' => 'admin', '
     Route::get('dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
-    Route::get('instructor-request/doc-download/{user}', [InstructorRequestController::class, 'download'])->name('instructor-request.download');
-    Route::resource('instructor-request', InstructorRequestController::class);
+    Route::group([
+        'prefix' => 'instructor-request',
+        'as' => 'instructor-request.',
+        'controller' => InstructorRequestController::class
+    ], function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('doc-download/{user}',  'download')->name('download');
+        Route::put('{instructor_request}', 'update')->name('update');
+    });
 });
 
 
