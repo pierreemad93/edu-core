@@ -12,14 +12,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('student.dashboard')" :active="request()->routeIs('student.dashboard')">
+                    <x-nav-link :href="route('student.dashboard')" :active="request()->routeIs('studen sm:ms-6">t.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden sm:flex sm:items-center
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
