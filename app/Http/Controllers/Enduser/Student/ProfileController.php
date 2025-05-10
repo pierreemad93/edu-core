@@ -6,8 +6,10 @@ use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Enduser\Student\ProfileRequest;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Enduser\Student\ProfileRequest;
+use App\Http\Requests\Enduser\Student\UpdatePasswordRequest;
 
 class ProfileController extends Controller
 {
@@ -23,6 +25,15 @@ class ProfileController extends Controller
     public function update(ProfileRequest $request, User $user): RedirectResponse
     {
         $user->update($request->validated());
+        return to_route('student.profile');
+    }
+    public function updatePassword(UpdatePasswordRequest $request, User $user): RedirectResponse
+    {
+        // dd($user);
+        $newPassword = Hash::make($request->validated(['password']));
+        $user->update([
+            'password' => $newPassword,
+        ]);
         return to_route('student.profile');
     }
 }

@@ -15,3 +15,4 @@ Route::controller(StudentDashboardController::class)->group(function () {
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/profile/{user}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
+Route::patch('/profile/{user}/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');

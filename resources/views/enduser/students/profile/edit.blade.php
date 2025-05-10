@@ -49,7 +49,7 @@
                                     <label>Email</label>
                                     <input type="email" placeholder="Enter your mail" name="email"
                                         value="{{ Auth::user()->email }}">
-                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
                                 </div>
                             </div>
@@ -76,6 +76,7 @@
                             </div>
                         </div>
                     </form>
+
                     {{-- SocialMedia links --}}
                     <div class="wsus__dashboard_contant_top d-flex flex-wrap justify-content-between">
                         <div class="wsus__dashboard_heading">
@@ -122,7 +123,52 @@
                         </div>
                     </form>
                     {{-- ./SocialMedia links --}}
+                    {{-- Update password --}}
+                    <div class="wsus__dashboard_contant_top d-flex flex-wrap justify-content-between">
+                        <div class="wsus__dashboard_heading">
+                            <h5>Update Your Password</h5>
+                        </div>
+                    </div>
+                    <form action="{{ route('student.profile.update-password', Auth::user()->id) }}" method="POST"
+                        class="wsus__dashboard_profile_update">
+                        @csrf
+                        @method('PATCH')
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="wsus__dashboard_profile_update_info">
+                                    <label>Current password</label>
+                                    <input type="password" placeholder="Enter your current password"
+                                        name="current_password">
+                                    <x-input-error :messages="$errors->get('current_password')" class="mt-2" />
 
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="wsus__dashboard_profile_update_info">
+                                    <label>new Password</label>
+                                    <input type="password" placeholder="Enter your current password" name="password">
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="wsus__dashboard_profile_update_info">
+                                    <label>confirm password</label>
+                                    <input type="password" placeholder="Enter your current password"
+                                        name="password_confirmation">
+                                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+
+                                </div>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <div class="wsus__dashboard_profile_update_btn">
+                                    <button type="submit" class="common_btn">Update Password</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    {{-- ./Update password --}}
                 </div>
             </x-slot>
         </x-enduser.dashbboard>
