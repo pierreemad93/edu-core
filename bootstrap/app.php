@@ -19,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->group(base_path('routes/admin.php'));
 
             //student route
-            Route::middleware('web')
+            Route::middleware('auth', 'verified', 'check_role:student')
                 ->prefix('student')
                 ->name('student.')
                 ->group(base_path('routes/student.php'));
