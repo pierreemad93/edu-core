@@ -25,7 +25,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->group(base_path('routes/student.php'));
 
             //instructor route
-            Route::middleware('auth', 'verified', 'check_role:instructor')
+            Route::middleware('web')
                 ->prefix('instructor')
                 ->name('instructor.')
                 ->group(base_path('routes/instructor.php'));
