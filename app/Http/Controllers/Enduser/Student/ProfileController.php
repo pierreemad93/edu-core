@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Enduser\Student\ProfileRequest;
 use App\Http\Requests\Enduser\Student\UpdatePasswordRequest;
+use App\Http\Requests\UpdateSocialLinksRequest;
 
 class ProfileController extends Controller
 {
@@ -34,6 +35,11 @@ class ProfileController extends Controller
         $user->update([
             'password' => $newPassword,
         ]);
+        return to_route('student.profile');
+    }
+    public function updateSocialLinks(UpdateSocialLinksRequest $request, User $user): RedirectResponse
+    {
+        $user->update($request->validated());
         return to_route('student.profile');
     }
 }
