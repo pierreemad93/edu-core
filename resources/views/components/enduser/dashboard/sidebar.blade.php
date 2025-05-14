@@ -5,15 +5,14 @@
                 class="img-fluid">
         </div>
         <div class="img">
-            <img src="{{ asset('enduser/assets') }}/images/dashboard_profile_img.png" alt="profile"
-                class="img-fluid w-100">
+            <img src={{ asset('') }}{{ Auth::user()->image }} alt="profile" class="img-fluid w-100">
         </div>
         <h4>{{ Auth::user()->name }}</h4>
         <p>{{ Auth::user()->role }}</p>
     </div>
     <ul class="wsus__dashboard_sidebar_menu">
         {{ $navLink }}
-       
+
         <li>
             <a href="#">
                 <div class="img">

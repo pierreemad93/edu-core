@@ -9,7 +9,7 @@ trait FileUpload
     //
     public function uploadFile(UploadedFile $file, string  $directory = 'uploads'): string
     {
-        $filename = 'edu-core_' . uniqid() . " . " . $file->getClientOriginalExtension();
+        $filename = 'edu-core_' . uniqid() . "." . $file->getClientOriginalExtension();
         $file->move(public_path($directory), $filename);
         return $directory . '/' . $filename;
     }

@@ -11,10 +11,12 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Enduser\Student\ProfileRequest;
 use App\Http\Requests\Enduser\Student\UpdatePasswordRequest;
 use App\Http\Requests\UpdateSocialLinksRequest;
+use App\Traits\FileUpload;
 
 class ProfileController extends Controller
 {
     //
+    use FileUpload;
     public function index(): View
     {
         return view('enduser.students.profile.index');
@@ -25,7 +27,15 @@ class ProfileController extends Controller
     }
     public function update(ProfileRequest $request, User $user): RedirectResponse
     {
-        $user->update($request->validated());
+        // dd($request->validated());
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $this->uploadFile($request->file('avatar'), 'uploads/students');
+        }
+        $data = $request->validated();
+        if ($request->hasFile('avatar')) {
+            $data['image'] =  $avatarPath;
+        }
+        $user->update($data);
         return to_route('student.profile');
     }
     public function updatePassword(UpdatePasswordRequest $request, User $user): RedirectResponse

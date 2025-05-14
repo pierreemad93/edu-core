@@ -28,6 +28,7 @@ class ProfileRequest extends FormRequest
             'email' => 'required|email|unique:users,email,' . Auth::user()->id,
             'headline' => 'nullable|max:255|string',
             'bio' => 'nullable|max:255|string',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ];
     }

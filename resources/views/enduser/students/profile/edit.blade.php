@@ -12,27 +12,26 @@
                             <a href="#" class="common_btn">Delete Profile</a>
                         </div>
                     </div>
-
-                    <div class="wsus__dashboard_profile wsus__dashboard_profile_avatar">
-                        <div class="img">
-                            <img src="{{ asset('enduser/assets') }}/images/dashboard_profile_img.png" alt="profile"
-                                class="img-fluid w-100">
-                            <label for="profile_photo">
-                                <img src="{{ asset('enduser/assets') }}/images/dash_camera.png" alt="camera"
-                                    class="img-fluid w-100">
-                            </label>
-                            <input type="file" id="profile_photo" hidden="">
-                        </div>
-                        <div class="text">
-                            <h6>Your avatar</h6>
-                            <p>PNG or JPG no bigger than 400px wide and tall.</p>
-                        </div>
-                    </div>
-
+                    {{-- Student profile --}}
                     <form action="{{ route('student.profile.update', Auth::user()->id) }}" method="post"
-                        class="wsus__dashboard_profile_update">
+                        class="wsus__dashboard_profile_update" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
+                        <div class="wsus__dashboard_profile wsus__dashboard_profile_avatar">
+                            <div class="img">
+                                <img src="{{ asset('') }}{{ Auth::user()->image }}" alt="profile"
+                                    class="img-fluid w-100">
+                                <label for="profile_photo">
+                                    <img src="{{ asset('enduser/assets') }}/images/dash_camera.png" alt="camera"
+                                        class="img-fluid w-100">
+                                </label>
+                                <input type="file" id="profile_photo" name="avatar" hidden="">
+                            </div>
+                            <div class="text">
+                                <h6>Your avatar</h6>
+                                <p>PNG or JPG no bigger than 400px wide and tall.</p>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="wsus__dashboard_profile_update_info">
