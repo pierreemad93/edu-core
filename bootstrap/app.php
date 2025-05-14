@@ -20,14 +20,10 @@ return Application::configure(basePath: dirname(__DIR__))
 
             //student route
             Route::middleware('web')
-                ->prefix('student')
-                ->name('student.')
                 ->group(base_path('routes/student.php'));
 
             //instructor route
             Route::middleware('web')
-                ->prefix('instructor')
-                ->name('instructor.')
                 ->group(base_path('routes/instructor.php'));
         },
 
