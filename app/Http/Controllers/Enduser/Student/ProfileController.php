@@ -36,6 +36,7 @@ class ProfileController extends Controller
             $data['image'] =  $avatarPath;
         }
         $user->update($data);
+        notyf()->success('Your profile has been updated.');
         return to_route('student.profile');
     }
     public function updatePassword(UpdatePasswordRequest $request, User $user): RedirectResponse
@@ -45,11 +46,13 @@ class ProfileController extends Controller
         $user->update([
             'password' => $newPassword,
         ]);
+        notyf()->success('Your Password has been updated.');
         return to_route('student.profile');
     }
     public function updateSocialLinks(UpdateSocialLinksRequest $request, User $user): RedirectResponse
     {
         $user->update($request->validated());
+        notyf()->success('Your Social links has been updated.');
         return to_route('student.profile');
     }
 }
